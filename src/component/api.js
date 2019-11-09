@@ -2,7 +2,7 @@ import firebase from 'firebase';
 
 let firebaseConfig
 const API = process.env.REACT_APP_WEATHER_API_KEY
-eval('firebaseConfig=' + API);
+// eval('firebaseConfig=' + API);
 // console.log(firebaseConfig)
 
 firebase.initializeApp(firebaseConfig);
