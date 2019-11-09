@@ -5,11 +5,6 @@ import OptionComponet from './component/option'
 import OutcomeComponent from './component/outcome'
 import './component/api.js'
 
-
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
