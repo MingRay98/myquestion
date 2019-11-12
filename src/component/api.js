@@ -1,8 +1,10 @@
 import firebase from 'firebase';
 
 let firebaseConfig
-const API = process.env.REACT_APP_WEATHER_API_KEY
-// eval('firebaseConfig=' + API);
+const API = process.env.REACT_APP_FIREBASE_API_KEY
+const password = process.env.REACT_APP_PASSWORD_API_KEY
+// console.log(password)
+eval('firebaseConfig=' + API);
 // console.log(firebaseConfig)
 
 firebase.initializeApp(firebaseConfig);
@@ -11,10 +13,9 @@ firebase.analytics();
 var db = firebase.firestore();
 
 function sign() {
-    console.log('321');
-    firebase.auth().signInWithEmailAndPassword('mingray@gmail.com', '123456')
+    firebase.auth().signInWithEmailAndPassword('guest@gmail.com', password)
         .then(() => {
-            console.log('太神ㄌ');
+            console.log('login sucess');
         })
         .catch((error) => {
             console.log(error.message);
@@ -25,15 +26,59 @@ function sign() {
 }
 
 console.log(sign())
-console.log('123')
 
 function signout() {
-    console.log('321');
+    console.log('signout');
     firebase.auth().signOut().then(function () {
-        console.log('太神ㄌ');
+        console.log('signout sucess');
         var user = firebase.auth().currentUser;
         console.log(user.email);
     }).catch(function (error) {
         // An error happened.
     });
 }
+
+function getdata() {
+    let array = []
+    console.log('getdata');
+    var docRef = db.collection("myquestion");
+    docRef.get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+            window.array.push({ name: doc.id, score: doc.data().score });
+        });
+    });
+    return array;
+}
+
+function storedata() {
+    console.log('storedata')
+    db.collection("myquestion").doc("handsome").set({
+        score: 100
+    });
+    console.log('done')
+}
+
+const a = {
+
+    saveData: (name = '不打名字的人', score = 0) => {
+        console.log('storedata')
+        db.collection("myquestion").doc(name).set({
+            score: score
+        });
+        console.log('done')
+    },
+    getData() {
+        let array = []
+        console.log('getdata');
+        var docRef = db.collection("myquestion");
+        docRef.get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+                array.push({ name: doc.id, score: doc.data().score });
+            });
+        });
+        return array;
+    }
+}
+
+export default a;
+

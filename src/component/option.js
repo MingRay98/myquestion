@@ -22,6 +22,7 @@ class option extends Component {
                 else
                     document.getElementById(item.value).style.backgroundColor = 'red';
         })
+        this.bingo = false;
     }
 
     componentWillUpdate() {

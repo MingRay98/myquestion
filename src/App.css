@@ -14,6 +14,7 @@
 }
 
 .container2 {
+  flex-direction: column;
   margin: 2rem auto;
   border: none;
   background: rgb(138, 72, 224);
@@ -23,6 +24,7 @@
 }
 
 .header {
+  justify-content: space-between;
   border-radius: 5rem;
   /*橫移 上下 模糊度 擴張*/
   box-shadow: 0 0 2rem 0.5rem rgba(0, 0, 0, 0.7);
@@ -46,10 +48,41 @@
   background-color: #eee;
 }
 
+.Headerbtn{
+  border: none;
+  border-radius: 5rem;
+  font-size:2rem;
+  background: transparent;
+  margin: 0 1rem 0 1rem;
+}
+
+
+.Headerbtn:hover{
+  background: wheat;
+}
+
 .text {
   color: white;
   text-align: left;
-  margin: 0 0 0 10rem;
+  margin: 0 0 0 5rem;
+}
+
+.alert1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 6rem;
+  color: red;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.94);
+  overflow: hidden;
+  font-size: 2.8rem;
+  display: none;
+}
+
+.active {
+  display: block;
 }
 
 @media only screen and (max-width: 700px) {
