@@ -75,6 +75,7 @@ p {
 
 .alert1 {
   position: absolute;
+  padding: 1rem 0 0 0;
   top: 0px;
   left: 0px;
   width: 100%;
