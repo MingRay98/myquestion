@@ -70,7 +70,7 @@ const a = {
     getData() {
         let array = []
         console.log('getdata');
-        var docRef = db.collection("myquestion");
+        var docRef = db.collection("myquestion").orderBy('score', 'desc');
         docRef.get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 array.push({ name: doc.id, score: doc.data().score });
