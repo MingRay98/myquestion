@@ -5,7 +5,6 @@ class outcome extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
         };
     }
 
@@ -18,11 +17,9 @@ class outcome extends Component {
             this.props.handleAlert('有懂有懂')
         else
             this.props.handleAlert('太菜了')
-
     }
 
     render() {
-
         return (
             <div id='wholeOutcome' className="flex container2">
                 {this.check()}

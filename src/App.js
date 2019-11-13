@@ -13,7 +13,7 @@ class App extends Component {
       content: {
         title: '吳彥祖比較愛模仿哪個Youtuber',
         ans: "2",
-        option: ["古娃娃古", "BANG結石", "魔鞋啾啾", "阿滴", "米沙","孫安卓"]
+        option: ["古娃娃古", "BANG結石", "魔鞋啾啾", "阿滴", "米沙", "孫安卓"]
       }
     }
     this.name = "";
@@ -32,12 +32,12 @@ class App extends Component {
       {
         title: '吳彥祖大一的體重是?',
         ans: "7",
-        option: ["超過100", "95", "90", "85", "80","75",'70']
+        option: ["超過100", "95", "90", "85", "80", "75", '70']
       },
       {
         title: "吳彥祖前身是誰",
         ans: "3",
-        option: ["九孔",'韓國瑜', "黃曉明", "黃登輝", "黃子蕉",'黃大謙','孔鏘']
+        option: ["九孔", '韓國瑜', "黃曉明", "黃登輝", "黃子蕉", '黃大謙', '孔鏘']
       },
       {
         title: '吳彥祖是資深什麼粉',
@@ -93,7 +93,7 @@ class App extends Component {
       api.saveData(this.name, this.score);
       return < OutcomeComponent score={this.score} name={this.name} list={this.props.list} handleAlert={this.handleAlert} />
     } else if (this.state.number != 0) {
-      return <OptionComponet number={this.state.number} content={this.state.content} nextQuestion={this.nextQuestion} addScore={this.addScore}  />
+      return <OptionComponet number={this.state.number} content={this.state.content} nextQuestion={this.nextQuestion} addScore={this.addScore} />
     }
   }
 
@@ -106,17 +106,37 @@ class App extends Component {
     }, 3500);
   }
 
+  handleGetScore = () => {
+    let board = document.getElementById('scoreBoard');
+    board.innerHTML =""
+    board.className = board.className + ' active';
+    this.props.list.forEach((item) =>
+    board.innerHTML += item.name+'的分數:'+item.score+'<br>'
+    );
+    let closeBtn = document.getElementById('closeBtn');
+    closeBtn.className = closeBtn.className + ' active';
+  }
+
+  handleClose = () =>{
+    let board = document.getElementById('scoreBoard');
+    board.className = 'scoreBoard';
+    let closeBtn = document.getElementById('closeBtn');
+    closeBtn.className = 'scoreBoardBtn';
+  }
+
   render() {
     return (
       <div id='contrainer' className='container'>
         <span id='alert1' className='alert1' />
+        <span id='scoreBoard' className='scoreBoard' />
+        <button id='closeBtn' className='scoreBoardBtn' onClick={()=>this.handleClose()}>X</button>
         <div id='header' className="flex header">
-          <button className='Headerbtn' onClick={()=>this.handleAlert('我是菜單')}>☰</button>
+          <button className='Headerbtn' onClick={() => this.handleGetScore()}>☰</button>
           <p>你跟吳彥祖的麻吉度</p>
-          <button className='Headerbtn' onClick={()=>this.handleAlert('只能正體中文')}>🌐</button>
+          <button className='Headerbtn' onClick={() => this.handleAlert('只能正體中文')}>🌐</button>
         </div>
         < InputComponet removeElement={this.removeElement} inputName={this.inputName} />
-        {this.check()}        
+        {this.check()}
       </div>
     );
   }
