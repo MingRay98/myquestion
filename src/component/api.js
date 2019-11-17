@@ -67,17 +67,19 @@ const a = {
         });
         console.log('done')
     },
-    getData() {
+    async getData() {
         let array = []
         console.log('getdata');
         var docRef = db.collection("myquestion").orderBy('score', 'desc');
-        docRef.get().then(querySnapshot => {
+        await docRef.get().then(querySnapshot => {
             querySnapshot.forEach(doc => {
                 array.push({ name: doc.id, score: doc.data().score });
             });
+
         });
         return array;
     }
+
 }
 
 export default a;

@@ -14,7 +14,8 @@ class App extends Component {
         title: '吳彥祖比較愛模仿哪個Youtuber',
         ans: "2",
         option: ["古娃娃古", "BANG結石", "魔鞋啾啾", "阿滴", "米沙", "孫安卓"]
-      }
+      },
+      list: []
     }
     this.name = "";
     this.score = 0;
@@ -65,7 +66,12 @@ class App extends Component {
         option: ["大尾盧曼2", "刺0", "雞排英雄", "環大西洋", "鬼陰驚(2013年真的有上映)"]
       }
     ]
+  }
 
+  componentDidMount() {
+    api.getData().then((value) => {
+      this.setState({ list: value })
+    });
   }
 
   removeElement = (elementId) => {
@@ -89,9 +95,9 @@ class App extends Component {
   }
 
   check = () => {
-    if (this.state.number > 10) {
+    if (this.state.number > 1) {
       api.saveData(this.name, this.score);
-      return < OutcomeComponent score={this.score} name={this.name} list={this.props.list} handleAlert={this.handleAlert} />
+      return < OutcomeComponent score={this.score} name={this.name} list={this.state.list} handleAlert={this.handleAlert} />
     } else if (this.state.number != 0) {
       return <OptionComponet number={this.state.number} content={this.state.content} nextQuestion={this.nextQuestion} addScore={this.addScore} />
     }
@@ -108,28 +114,35 @@ class App extends Component {
 
   handleGetScore = () => {
     let board = document.getElementById('scoreBoard');
-    board.innerHTML =""
     board.className = board.className + ' active';
-    this.props.list.forEach((item) =>
-    board.innerHTML += item.name+'的分數:'+item.score+'<br>'
-    );
     let closeBtn = document.getElementById('closeBtn');
     closeBtn.className = closeBtn.className + ' active';
   }
 
-  handleClose = () =>{
+
+
+  handleClose = () => {
     let board = document.getElementById('scoreBoard');
     board.className = 'scoreBoard';
     let closeBtn = document.getElementById('closeBtn');
     closeBtn.className = 'scoreBoardBtn';
   }
 
+  RenderScore = () => {
+    let board = this.state.list.map((item) => <div>{item.name + '的分數:' + item.score}</div>)
+    if (this.state.list.length===0)
+      return '加載中...'
+    else
+      return board
+  }
+
   render() {
+
     return (
       <div id='contrainer' className='container'>
         <span id='alert1' className='alert1' />
-        <span id='scoreBoard' className='scoreBoard' />
-        <button id='closeBtn' className='scoreBoardBtn' onClick={()=>this.handleClose()}>X</button>
+        <span id='scoreBoard' className='scoreBoard' >{this.RenderScore()} </span>
+        <button id='closeBtn' className='scoreBoardBtn' onClick={() => this.handleClose()}>X</button>
         <div id='header' className="flex header">
           <button className='Headerbtn' onClick={() => this.handleGetScore()}>☰</button>
           <p>你跟吳彥祖的麻吉度</p>
