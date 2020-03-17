@@ -69,9 +69,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const ua = navigator.userAgent.toLocaleLowerCase();
-    const isChrome = /chrome/.test(ua);
-    !isChrome && alert('Chrome')
     api.getData().then((value) => {
       this.setState({list: value})
     });

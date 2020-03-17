@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import api from './api'
 
 class outcome extends Component {
@@ -21,7 +21,7 @@ class outcome extends Component {
 
     render() {
         return (
-            <div id='wholeOutcome' className="flex container2">
+            <div id='wholeOutcome' className="flex container2" style={{flexWrap: 'nowrap', overflowY: 'auto', justifyContent: 'flex-start'}}>
                 {this.check()}
                 <div algin="center">
                     {this.props.name}的分數: {this.props.score}
