@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW">
 
 <head>
-  <meta charset="utf-8" />
-  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta charset="utf-8" /> <!-- 解碼方式 -->
+  <link rel="icon" href="%PUBLIC_URL%/favicon.png" /> <!-- 網頁左邊icon -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- Bootstrap4 取用 -->
   <meta name="viewport" content="width=device-width, initial-scale=1 ,user-scalable=no" />
+  <!-- viewport content width 設定成跟裝置一樣 縮放大小=不變 使用可者縮放 = NO -->
+  <!-- 
+    不給使用快取
+    Cache-Control is for HTTP 1.1  
+    Pragma is for HTTP 1.0
+    Expires is for proxies
+    -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+
   <meta name="theme-color" content="#000000" />
   <meta name="description" content="Web site created using create-react-app" />
   <link rel="apple-touch-icon" href="logo192.png" />
@@ -24,7 +36,7 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-  <title>React App</title>
+  <title>吳彥祖的洨秘密問答</title>
 </head>
 
 <body>

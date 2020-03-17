@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import InputComponet from './component/input'
 import OptionComponet from './component/option'
@@ -69,8 +69,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const ua = navigator.userAgent.toLocaleLowerCase();
+    const isChrome = /chrome/.test(ua);
+    !isChrome && alert('Chrome')
     api.getData().then((value) => {
-      this.setState({ list: value })
+      this.setState({list: value})
     });
   }
 
@@ -80,7 +83,7 @@ class App extends Component {
 
   inputName = (value) => {
     this.name = value;
-    this.setState({ number: this.state.number + 1 })
+    this.setState({number: this.state.number + 1})
   }
 
   nextQuestion = () => {
@@ -95,7 +98,7 @@ class App extends Component {
   }
 
   check = () => {
-    if (this.state.number > 1) {
+    if (this.state.number > 10) {
       api.saveData(this.name, this.score);
       return < OutcomeComponent score={this.score} name={this.name} list={this.state.list} handleAlert={this.handleAlert} />
     } else if (this.state.number != 0) {
@@ -109,7 +112,7 @@ class App extends Component {
     warn.innerHTML = message;
     setTimeout(() => {
       warn.className = 'alert1';
-    }, 3500);
+    }, 5000);
   }
 
   handleGetScore = () => {
@@ -130,7 +133,7 @@ class App extends Component {
 
   RenderScore = () => {
     let board = this.state.list.map((item) => <div>{item.name + '的分數:' + item.score}</div>)
-    if (this.state.list.length===0)
+    if (this.state.list.length === 0)
       return '加載中...'
     else
       return board
