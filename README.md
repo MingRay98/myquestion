@@ -1,3 +1,5 @@
+> **Archived project.** This project is no longer maintained or updated. The public demo has been retired.
+
 ## About
 
 New version: https://mingray98.github.io/my-new-question
